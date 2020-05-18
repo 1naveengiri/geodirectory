@@ -295,7 +295,8 @@ class GeoDir_Admin_Upgrade {
 				}
 
 				$data['default_image'] = self::update_200_generate_attachment_id( get_option( 'geodir_cpt_img_' . $post_type ) );
-
+				
+				$data['disable_new_tags'] = 0;
 				$data['disable_reviews'] = in_array( $post_type, (array) get_option( 'geodir_disable_rating_cpt' ) );
 				$data['disable_favorites'] = 0;
 				$data['disable_frontend_add'] = ! in_array( $post_type, (array) get_option( 'geodir_allow_posttype_frontend' ) );

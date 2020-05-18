@@ -308,6 +308,26 @@ function geodir_fav_allowed_post_types(){
     return $allowed_cpts;
 }
 
+/**
+ * Get the post types that have new tags creation enabled.
+ *
+ * @since 2.0.0
+ * @return array
+ */
+function geodir_new_tags_allowed_post_types(){
+    $postypes = geodir_get_posttypes( 'array' );
+
+    $allowed_cpts = array();
+    if(!empty($postypes)){
+        foreach($postypes as $cpt => $postype){
+            if(!isset($postype['disable_new_tags']) || !$postype['disable_new_tags']){
+                $allowed_cpts[] = $cpt;
+            }
+        }
+    }
+
+    return $allowed_cpts;
+}
 
 /**
  * Returns the post type link with parameters.

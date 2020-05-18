@@ -1218,7 +1218,22 @@ function geodir_cpt_has_favourite_disabled( $post_type = '') {
 	}
 }
 
-
+/**
+ * Check new tags creation disabled for certain CPT.
+ *
+ * @since 2.0.0
+ *
+ * @param string|int $post_type WP post type or Post ID or WP texonomy. Ex: gd_place.
+ * @return bool True if new tags disabled, otherwise false.
+ */
+function geodir_cpt_has_new_tags_disabled( $post_type = '') {
+	$post_types = $post_types = geodir_get_posttypes('array');
+	if(isset($post_types[$post_type]['disable_new_tags']) && $post_types[$post_type]['disable_new_tags']){
+		return true;
+	}else{
+		return false;
+	}
+}
 /**
  * Get the search page base url.
  *

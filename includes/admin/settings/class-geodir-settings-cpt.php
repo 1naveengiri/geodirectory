@@ -181,6 +181,7 @@ if ( ! class_exists( 'GeoDir_Settings_Cpt', false ) ) :
 
 				'default_image' => '',
 				'disable_reviews' => '0',
+				'disable_new_tags' => '0',
 				'disable_favorites' => '0',
 				'disable_frontend_add' => '0',
 				// author
@@ -299,7 +300,15 @@ if ( ! class_exists( 'GeoDir_Settings_Cpt', false ) ) :
 					'advanced' => true,
 					'value'	   => $post_type_values['disable_reviews']
 				),
-
+				array(
+					'name' => __( 'Disable add new tags', 'geodirectory' ),
+					'desc' => __( 'Prevent user from creating new tags from add listing form.', 'geodirectory' ),
+					'id' => 'disable_new_tags',
+					'type' => 'checkbox',
+					'std' => '0',
+					'advanced' => true,
+					'value' => ( isset( $post_type_values['disable_new_tags'] ) && $post_type_values['disable_new_tags'] ? absint( $post_type_values['disable_new_tags'] ) : 0 )
+				),
 				array(
 					'name' => __( 'Single review', 'geodirectory' ),
 					'desc' => __( 'Restrict user to leave more than one review per post.', 'geodirectory' ),
@@ -773,6 +782,7 @@ if ( ! class_exists( 'GeoDir_Settings_Cpt', false ) ) :
 			// disable features
 			$output[$post_type]['disable_comments'] = isset($raw['disable_comments']) && $raw['disable_comments'] ? absint($raw['disable_comments']) : 0;
 			$output[$post_type]['disable_reviews'] = isset($raw['disable_reviews']) && $raw['disable_reviews'] ? absint($raw['disable_reviews']) : 0;
+			$output[$post_type]['disable_new_tags'] = isset($raw['disable_new_tags']) && $raw['disable_new_tags'] ? absint($raw['disable_new_tags']) : 0;
 			$output[$post_type]['single_review'] = isset( $raw['single_review'] ) && $raw['single_review'] ? absint( $raw['single_review'] ) : 0;
 			$output[$post_type]['disable_favorites'] = isset($raw['disable_favorites']) && $raw['disable_favorites'] ? absint($raw['disable_favorites']) : 0;
 			$output[$post_type]['disable_frontend_add'] = isset($raw['disable_frontend_add']) && $raw['disable_frontend_add'] ? absint($raw['disable_frontend_add']) : 0;
