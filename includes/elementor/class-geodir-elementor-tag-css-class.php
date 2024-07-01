@@ -180,6 +180,17 @@ Class GeoDir_Elementor_Tag_CSS_Class extends \Elementor\Core\DynamicTags\Tag {
 						}
 					}
 				}
+				/*
+				* Filter CSS class render value.
+				*
+				* @since 2.1.0.6
+				*
+				* @param mixed  $value Tag value.
+				* @param string $key Tag key.
+				* @param object $this Tag object.
+				*/
+				$match_found = apply_filters( 'geodir_elementor_tag_css_class_render_value', $match_found, $key, $this );
+
 			}
 
 			if ( $match_found ) {
@@ -369,6 +380,16 @@ Class GeoDir_Elementor_Tag_CSS_Class extends \Elementor\Core\DynamicTags\Tag {
 			'options' => $cat_keys
 		);
 
+
+		/*
+		 * Filter CSS  custom fields.
+		 *
+		 * @since 2.2.12
+		 *
+		 * @param array  $groups Field groups.
+		 * @param object $this Tag object.
+		 */
+		$groups = apply_filters( 'geodir_elementor_tag_css_class_fields', $groups, $this );
 
 		return $groups;
 	}
